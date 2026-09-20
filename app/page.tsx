@@ -215,7 +215,7 @@ export default async function Home() {
                 <p className="xhs-section-label">最近学到的</p>
                 <h2 className="mt-3 text-3xl font-black text-slate-950">知识日记</h2>
                 <p className="mt-3 max-w-xl leading-7 text-slate-600">
-                  福仔在旁边打盹，我把学习中的新发现整理成一篇篇可以回看的笔记。
+                  福仔在旁边打盹，我把后端学习记录和 AI Agent 笔记整理成一篇篇可以回看的文章。
                 </p>
               </div>
               <Link href="/notes" className="xhs-button inline-flex h-10 items-center rounded-md px-4 text-sm font-bold text-white transition hover:-translate-y-0.5">
@@ -223,14 +223,18 @@ export default async function Home() {
               </Link>
             </div>
             <div className="mt-6 grid gap-4 md:grid-cols-2">
-              {knowledgeNotes.slice(0, 2).map((note) => (
+              {knowledgeNotes.slice(0, 4).map((note) => (
                 <Link key={note.slug} href={`/notes/${note.slug}`} className="note-card group bg-white/65">
                   <div className="flex items-center justify-between gap-3">
-                    <span className="xhs-pill bg-[#A8D8EA]/75 text-xs font-black text-sky-900">{note.category}</span>
+                    <span className="xhs-pill bg-[#A8D8EA]/75 text-xs font-black text-sky-900">
+                      {note.category.label}
+                    </span>
                     <span className="text-xs font-semibold text-slate-400">{note.readingTime}</span>
                   </div>
                   <h3 className="mt-4 text-xl font-black text-slate-950 transition group-hover:text-rose-600">{note.title}</h3>
-                  <p className="mt-3 line-clamp-2 text-sm leading-7 text-slate-600">{note.excerpt}</p>
+                  {note.excerpt ? (
+                    <p className="mt-3 line-clamp-2 text-sm leading-7 text-slate-600">{note.excerpt}</p>
+                  ) : null}
                 </Link>
               ))}
             </div>

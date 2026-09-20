@@ -585,6 +585,136 @@ textarea {
   }
 }
 
+.note-markdown {
+  color: #475569;
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.note-markdown > :first-child {
+  margin-top: 0;
+}
+
+.note-markdown h1 {
+  font-size: clamp(1.6rem, 3.4vw, 2.1rem);
+  font-weight: 900;
+  line-height: 1.25;
+  color: #0f172a;
+}
+
+.note-markdown h2 {
+  margin-top: 2.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px dashed rgba(44, 62, 80, 0.16);
+  font-size: clamp(1.3rem, 2.8vw, 1.65rem);
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.note-markdown h3,
+.note-markdown h4 {
+  margin-top: 1.75rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.note-markdown p,
+.note-markdown li {
+  margin-top: 0.85rem;
+}
+
+.note-markdown strong {
+  color: #0f172a;
+  font-weight: 800;
+}
+
+.note-markdown ul,
+.note-markdown ol {
+  margin-top: 0.85rem;
+  padding-left: 1.35rem;
+}
+
+.note-markdown ul {
+  list-style: disc;
+}
+
+.note-markdown ol {
+  list-style: decimal;
+}
+
+.note-markdown blockquote {
+  margin-top: 1.25rem;
+  border-left: 4px solid rgba(232, 101, 90, 0.55);
+  border-radius: 0 6px 6px 0;
+  background: rgba(248, 213, 196, 0.34);
+  padding: 0.75rem 1rem;
+  color: #64748b;
+  font-size: 0.94rem;
+}
+
+.note-markdown a {
+  color: #c84f51;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.note-markdown code {
+  border-radius: 4px;
+  background: rgba(168, 216, 234, 0.34);
+  padding: 0.1rem 0.35rem;
+  color: #0f172a;
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+}
+
+.note-markdown pre {
+  overflow-x: auto;
+  margin-top: 1.4rem;
+  border-radius: 6px;
+  background: #24313f;
+  padding: 1rem 1.1rem;
+  line-height: 1.8;
+}
+
+.note-markdown pre code {
+  background: transparent;
+  padding: 0;
+  color: #e7f4f6;
+  font-size: 0.82rem;
+}
+
+.note-markdown hr {
+  margin: 2.25rem 0;
+  border: 0;
+  border-top: 1px dashed rgba(44, 62, 80, 0.2);
+}
+
+.note-markdown table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  margin-top: 1.4rem;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.note-markdown th,
+.note-markdown td {
+  border: 1px solid rgba(44, 62, 80, 0.14);
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.note-markdown th {
+  background: rgba(181, 229, 207, 0.42);
+  color: #0f172a;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

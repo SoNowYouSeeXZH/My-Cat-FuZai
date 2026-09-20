@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { knowledgeNotes } from "../lib/knowledge-notes";
+import { knowledgeCategories, knowledgeNotes } from "../lib/knowledge-notes";
 
 export const metadata = {
   title: "知识日记 | 福仔日记",
-  description: "整理学习中的新发现、实践记录和个人思考。",
+  description: "整理后端学习记录、AI Agent 笔记和实践中的新发现。",
 };
 
 export default function NotesPage() {
@@ -16,47 +16,49 @@ export default function NotesPage() {
             一边记录福仔，<span className="xhs-highlight">一边弄懂世界</span>
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
-            这里放学习笔记、实践记录和还在慢慢想清楚的事情。每一篇都从一个具体问题开始。
+            这里放后端学习记录、AI Agent 笔记和实践中的新发现，共 {knowledgeNotes.length} 篇。
           </p>
         </header>
 
-        <div className="mb-6 flex items-end justify-between gap-4">
-          <div>
-            <p className="xhs-section-label">最近学到的</p>
-            <h2 className="mt-3 text-3xl font-black text-slate-950">知识日记</h2>
-          </div>
-          <span className="xhs-pill bg-[#D5C6E0]/70 text-sm font-bold text-slate-700">
-            {knowledgeNotes.length} 篇记录
-          </span>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-2">
-          {knowledgeNotes.map((note) => (
-            <Link key={note.slug} href={`/notes/${note.slug}`} className="note-card group">
-              <div className="flex items-center justify-between gap-3">
-                <span className="xhs-pill bg-[#A8D8EA]/75 text-xs font-black text-sky-900">
-                  {note.category}
+        <div className="grid gap-14">
+          {knowledgeCategories.map((category) => (
+            <section key={category.slug} id={category.slug}>
+              <div className="mb-6 flex flex-col justify-between gap-3 md:flex-row md:items-end">
+                <div>
+                  <p className="xhs-section-label">{category.label}</p>
+                  <h2 className="mt-3 text-3xl font-black text-slate-950">{category.description}</h2>
+                </div>
+                <span className="xhs-pill w-fit bg-[#D5C6E0]/70 text-sm font-bold text-slate-700">
+                  {category.notes.length} 篇
                 </span>
-                <time className="text-xs font-semibold text-slate-400" dateTime={note.publishedAt}>
-                  {note.publishedAt}
-                </time>
               </div>
-              <h2 className="mt-5 text-2xl font-black leading-tight text-slate-950 transition group-hover:text-rose-600">
-                {note.title}
-              </h2>
-              <p className="mt-4 leading-7 text-slate-600">{note.excerpt}</p>
-              <div className="mt-6 flex flex-wrap items-center gap-2">
-                {note.tags.map((tag) => (
-                  <span key={tag} className="note-tag">
-                    {tag}
-                  </span>
+
+              <div className="grid gap-6 md:grid-cols-2">
+                {category.notes.map((note) => (
+                  <Link key={note.slug} href={`/notes/${note.slug}`} className="note-card group">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="xhs-pill bg-[#A8D8EA]/75 text-xs font-black text-sky-900">
+                        {note.category.label}
+                      </span>
+                      <span className="text-xs font-semibold text-slate-400">{note.readingTime}</span>
+                    </div>
+                    <h3 className="mt-5 text-xl font-black leading-tight text-slate-950 transition group-hover:text-rose-600">
+                      {note.title}
+                    </h3>
+                    {note.excerpt ? (
+                      <p className="mt-4 line-clamp-3 leading-7 text-slate-600">{note.excerpt}</p>
+                    ) : null}
+                    <div className="mt-6 flex flex-wrap items-center gap-2">
+                      {note.headings.slice(0, 3).map((heading) => (
+                        <span key={heading} className="note-tag">
+                          {heading}
+                        </span>
+                      ))}
+                    </div>
+                  </Link>
                 ))}
               </div>
-              <div className="mt-8 flex items-center justify-between border-t border-slate-200/80 pt-4 text-sm font-bold text-slate-500">
-                <span>预计阅读 {note.readingTime}</span>
-                <span className="text-rose-600 transition group-hover:translate-x-1">打开笔记 →</span>
-              </div>
-            </Link>
+            </section>
           ))}
         </div>
       </div>
